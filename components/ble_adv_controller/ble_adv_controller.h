@@ -90,7 +90,7 @@ public:
   bool is_show_config() { return this->show_config_; }
 
   void set_handler(BleAdvHandler * handler) { this->handler_ = handler; }
-  void refresh_encoder(std::string id, size_t index);
+  void refresh_encoder(size_t index);
 
 #ifdef USE_API
   // Services
