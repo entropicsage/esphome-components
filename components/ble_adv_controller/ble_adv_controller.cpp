@@ -39,16 +39,10 @@ void BleAdvController::set_min_tx_duration(int tx_duration, int min, int max, in
 }
 
 void BleAdvController::setup() {
-#ifdef USE_API
-  register_service(&BleAdvController::on_pair, "pair_" + this->get_object_id());
-  register_service(&BleAdvController::on_unpair, "unpair_" + this->get_object_id());
-  register_service(&BleAdvController::on_cmd, "cmd_" + this->get_object_id(), {"cmd", "arg0", "arg1", "arg2", "arg3"});
-  register_service(&BleAdvController::on_raw_inject, "inject_raw_" + this->get_object_id(), {"raw"});
-#endif
 }
 
 void BleAdvController::dump_config() {
-  ESP_LOGCONFIG(TAG, "BleAdvController '%s'", this->get_object_id().c_str());
+  ESP_LOGCONFIG(TAG, "BleAdvController");
   ESP_LOGCONFIG(TAG, "  Hash ID '%lX'", this->params_.id_);
   ESP_LOGCONFIG(TAG, "  Index '%d'", this->params_.index_);
   ESP_LOGCONFIG(TAG, "  Transmission Min Duration: %ld ms", this->get_min_tx_duration());
