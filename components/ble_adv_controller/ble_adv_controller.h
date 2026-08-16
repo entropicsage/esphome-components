@@ -23,13 +23,8 @@ class BleAdvDynConfig: public BaseEntity
 {
 public:
   void init(const char * name, const StringRef & parent_name) {
-    // Due to the use of sh... StringRef, we are forced to keep a ref on the built string...
-    this->ref_name_ = std::string(parent_name) + " - " + std::string(name);
-    this->set_object_id(this->ref_name_.c_str());
-    this->set_name(this->ref_name_.c_str());
-    this->set_entity_category(EntityCategory::ENTITY_CATEGORY_CONFIG);
-    this->sub_init();
-    this->publish_state(this->state);
+    (void) name;
+    (void) parent_name;
   }
 
   // register to App and restore from config / saved data
@@ -76,7 +71,7 @@ public:
   virtual void dump_config() override;
   
   void set_min_tx_duration(int tx_duration, int min, int max, int step);
-  uint32_t get_min_tx_duration() { return (uint32_t)this->number_duration_.state; }
+  uint32_t get_min_tx_duration() { return this->min_tx_duration_; }
   void set_max_tx_duration(uint32_t tx_duration) { this->max_tx_duration_ = tx_duration; }
   void set_seq_duration(uint32_t seq_duration) { this->seq_duration_ = seq_duration; }
   void set_forced_id(uint32_t forced_id) { this->params_.id_ = forced_id; }
@@ -106,6 +101,7 @@ protected:
 
   uint32_t max_tx_duration_ = 3000;
   uint32_t seq_duration_ = 150;
+  uint32_t min_tx_duration_ = 200;
 
   ControllerParam_t params_;
 
