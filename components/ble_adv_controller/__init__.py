@@ -270,7 +270,6 @@ class BleAdvRegistry:
 async def to_code(config):
     hdl = BleAdvRegistry.get()
     var = cg.new_Pvariable(config[CONF_ID])
-    cg.add(var.set_setup_priority(300)) # start after Bluetooth
     await cg.register_component(var, config)
     await setup_entity(var, config, "ble_adv_controller")
     cg.add(var.set_handler(hdl))
