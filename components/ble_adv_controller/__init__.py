@@ -282,6 +282,7 @@ async def to_code(config):
         cg.add(var.set_forced_id(config[CONF_BLE_ADV_FORCED_ID]))
     else:
         cg.add(var.set_forced_id(config[CONF_ID].id))
+    cg.add(var.set_index(config[CONF_INDEX]))
     cg.add(var.set_show_config(config[CONF_BLE_ADV_SHOW_CONFIG]))
 
 
